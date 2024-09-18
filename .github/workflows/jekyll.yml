@@ -18,10 +18,10 @@ jobs:
     - name: Setup Ruby
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: 3.2  # Use Ruby 3.2 or any 3.x version
+        ruby-version: 3.2  # or your desired Ruby version
         bundler-cache: true
 
     - name: Build and publish
       uses: helaili/jekyll-action@2.2.0
-      env:
-        JEKYLL_PAT: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}  # Use the built-in token
