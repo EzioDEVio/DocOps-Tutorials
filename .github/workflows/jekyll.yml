@@ -1,0 +1,27 @@
+name: Build and Deploy Jekyll site to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 2.7
+        bundler-cache: true
+
+    - name: Build and publish
+      uses: helaili/jekyll-action@2.2.0
+      env:
+        JEKYLL_PAT: ${{ secrets.GITHUB_TOKEN }}
